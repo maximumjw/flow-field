@@ -12,14 +12,14 @@ class Particle{
     this.y=Math.floor(Math.random()*this.effect.height);
     this.speedX;
     this.speedY;
-    this.speedModifier=Math.floor(Math.random()*2+1);
+    this.speedModifier=Math.floor(Math.random()*1+1);
     this.history=[{x:this.x,y:this.y}];
     this.maxLength=Math.floor(Math.random()*60+20);
     this.angle=0;
     this.newAngle=0;
     this.andgleCorrector=Math.random()*0.5+0.01;
     this.timer=this.maxLength*2;
-    this.colors=['#4c026b','#730d9e','9622c7','#b44ae0'];
+    this.colors=['#DE8B2C','#E8792E','#D15F34','#E8472E','#DE2C2C'];
     this.color=this.colors[Math.floor(Math.random()*this.colors.length)];
  }
  draw(context){
@@ -49,8 +49,8 @@ class Particle{
         else this.angle=this.newAngle;
         }
 
-        this.speedX=Math.cos(this.angle);
-        this.speedY=Math.sin(this.angle);
+        this.speedX=Math.cos(this.angle)*2;
+        this.speedY=Math.sin(this.angle)*2;
         this.x+=this.speedX*this.speedModifier;
         this.y+=this.speedY*this.speedModifier;
     
@@ -69,15 +69,14 @@ class Particle{
  reset(){
     let attempts=0;
     let resetSuccess=false;
-
-    while(attempts<50&&!resetSuccess){
+    while(attempts<1000&&!resetSuccess){
         attempts++;
         let textIndex=Math.floor(Math.random()*this.effect.flowField.length);
         if(this.effect.flowField[textIndex].alpha>0){
             this.x=this.effect.flowField[textIndex].x;
             this.y=this.effect.flowField[textIndex].y;
             this.history=[{x:this.x, y:this.y}];
-            this.timer=this.maxLength*2;
+            this.timer=this.maxLength*0.5;
             resetSuccess=true;
         }
     }
@@ -85,7 +84,7 @@ class Particle{
         this.x=Math.random()*this.effect.width;
         this.y=Math.random()*this.effect.height;
         this.history=[{x:this.x, y:this.y}];
-        this.timer=this.maxLength*2;
+        this.timer=this.maxLength*0.5;
     }
  }
 }
@@ -96,7 +95,7 @@ class Effect{
         this.width=this.canvas.width;
         this.height=this.canvas.height;
         this.particles=[];
-        this.numberOfParticles=4000;
+        this.numberOfParticles=8000;
         this.cellSize=5;
         this.rows;
         this.cols;
@@ -131,7 +130,7 @@ class Effect{
         gradient3.addColorStop(0.6, 'rgb(0,0,255)');
         gradient3.addColorStop(0.8, 'rgb(0,0,0)');
         //27:35 색깔 실험 
-        this.context.fillStyle=gradient3;
+        this.context.fillStyle=gradient1;
         this.context.fillText('SASA',this.width*0.5,this.height*0.5,this.width*0.8);
 
     }   
