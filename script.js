@@ -131,7 +131,7 @@ class Effect{
         gradient3.addColorStop(0.8, 'rgb(0,0,0)');
         //27:35 색깔 실험 
         this.context.fillStyle=gradient1;
-        this.context.fillText('SASA',this.width*0.5,this.height*0.5,this.width*0.8);
+        this.context.fillText('FIRE',this.width*0.5,this.height*0.5,this.width*0.8);
 
     }   
     init(){
